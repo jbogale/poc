@@ -13,19 +13,18 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="test2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ButtonAnimation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-je-rx9" customClass="AnimatedUIBUtton" customModule="test2" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-je-rx9" customClass="AnimatedUIBUtton" customModule="ButtonAnimation" customModuleProvider="target">
                                 <rect key="frame" x="87.5" y="308.5" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Od-nO-kFR"/>
                                     <constraint firstAttribute="width" constant="200" id="7G5-PU-vMK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Claim Offer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -60,7 +59,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.054959794432838056" green="0.086365079600305844" blue="0.25491727941176479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="42F-vR-Na4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1eV-W8-ZC8"/>
                             <constraint firstItem="42F-vR-Na4" firstAttribute="top" secondItem="ri6-je-rx9" secondAttribute="bottom" constant="100" id="BIt-Ig-CiY"/>

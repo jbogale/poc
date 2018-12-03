@@ -12,16 +12,28 @@ class AnimatedUIBUtton: UIButton {
     var path: UIBezierPath!
     let dotColor =  UIColor.white.cgColor
     let numberOfLoadingDots = 3
-
+    let checkMarkImageView  = UIImageView(image: UIImage(named: "Check"))
+    var closure:() -> Void = { }
+    var buttonDimension: CGFloat {
+        return self.bounds.height / 2
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
+    public func setUp(closure: @escaping ()-> Void){
+        self.closure = closure
+        checkMarkImageView.contentMode = .scaleAspectFit
+        checkMarkImageView.frame = CGRect(x: bounds.midX - (buttonDimension / 2), y: bounds.midY - (buttonDimension / 2), width: buttonDimension, height: buttonDimension)
+        self.addSubview(checkMarkImageView)
+        checkMarkImageView.alpha = 0
+    }
 
     public func startProcessing(){
-        self.setTitle("", for: .normal)
         self.isEnabled = false
-        self.backgroundColor = UIColor(red:0.09, green:0.13, blue:0.30, alpha:1.0)
+        setTitle("", for: .normal)
+        self.backgroundColor = UIColor(red:0.18, green:0.57, blue:0.93, alpha:1.0)
 
         //used https://stackoverflow.com/questions/42399720/fade-in-out-animation-for-a-series-of-dots as a reference
         let loaderIcons = createLoaderIcon()
@@ -40,49 +52,38 @@ class AnimatedUIBUtton: UIButton {
     }
     
     public func finishProcessing(){
-        let checkMarkLayer = CAShapeLayer()
-        backgroundColor = UIColor(red:0.03, green:0.31, blue:0.16, alpha:1.0)
-        createCheckMarkPath()
- 
-        checkMarkLayer.path = self.path.cgPath
-        checkMarkLayer.fillColor = backgroundColor?.cgColor
-        checkMarkLayer.strokeColor = UIColor.white.cgColor
-        checkMarkLayer.lineWidth = 6.0
-        
-        checkMarkLayer.add(checkMarkAnimation(), forKey: "drawLineAnimation")
-        layer.addSublayer(checkMarkLayer)
+        _ = layer.sublayers?.popLast()
+        setSuccessBackground()
     }
 
     public func resetButton(){
-        _ = layer.sublayers?.popLast()
         isEnabled = true
-        backgroundColor  = UIColor.blue
+        backgroundColor  = UIColor(red:0.18, green:0.57, blue:0.93, alpha:1.0)
         setTitle("Claim Offer", for: .normal)
-        
+        checkMarkImageView.alpha = 0
     }
-
-    private  func createCheckMarkPath(){
-        let centerX = self.frame.width / 2
-        let centerY = (self.frame.height / 2)
-        
-        _ = self.layer.sublayers?.popLast()
-
-        path = UIBezierPath()
-        path.move(to: CGPoint(x: centerX - 11, y: centerY - 10))
-        path.addLine(to: CGPoint(x: centerX, y: centerY + 10))
-        path.addLine(to: CGPoint(x: centerX + 40, y: centerY - 15))
+    
+    private func setSuccessBackground() {
+        UIView.animate(withDuration: 1.5, animations: {
+            self.backgroundColor = UIColor(red:0.24, green:0.53, blue:0.24, alpha:1.0)
+            self.checkMarkImageView.alpha = 1
+        }, completion: { (_) in
+            self.checkMarkImageView.alpha = 0
+            self.setTitle("Bet Now", for: .normal)
+            self.closure()
+        })
     }
-
+ 
     private func createLoaderIcon() -> CAShapeLayer {
         path = UIBezierPath(ovalIn:  CGRect(x: 35, y: 8, width: 12, height: 12))
         let loaderIcon = CAShapeLayer()
         loaderIcon.path = path.cgPath
         loaderIcon.fillColor  = dotColor
-        loaderIcon.lineWidth = 4
+        loaderIcon.lineWidth = 5
         return loaderIcon
     }
     
-    private func    loaderIconAnimation() -> CABasicAnimation {
+    private func loaderIconAnimation() -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         animation.fromValue = 1.0
         animation.toValue = 0.1
@@ -91,14 +92,6 @@ class AnimatedUIBUtton: UIButton {
         return animation
     }
 
-    private func checkMarkAnimation() -> CABasicAnimation {
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        /* set up animation */
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 0.5
-        return animation
-    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

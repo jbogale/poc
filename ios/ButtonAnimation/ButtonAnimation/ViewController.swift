@@ -34,6 +34,10 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        button.setUp( closure: { print("XXXXXX") })
+        
+        
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         
