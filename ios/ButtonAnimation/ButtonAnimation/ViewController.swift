@@ -16,7 +16,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var startOverButton: UIButton!
     @IBAction func startOver(_ sender: Any) {
         startOverButton.isHidden = true
-        button.resetButton()
+        button.resetBackToInitialState()
     }
     
     @IBAction func completeProcessing(_ sender: Any) {
@@ -26,7 +26,7 @@ class ViewController: UIViewController{
     }
     
     @IBAction func ProcessButton(_ sender: Any) {
-        button.startProcessing()
+        button.startProcessing{}
         completeButton.isHidden = false
     }
     
@@ -35,9 +35,7 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        button.setUp( closure: { print("XXXXXX") })
-        
-        
+
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         
