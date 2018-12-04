@@ -15,7 +15,6 @@ class AnimatedUIBUtton: UIButton {
     private var checkMarkImageView: UIImageView =  UIImageView(image: UIImage(named: "Check"))
     private var buttonTitle: String = ""
 
-    
     private var loaderIconDiameter: CGFloat {
         return bounds.height / 4
     }
@@ -23,8 +22,9 @@ class AnimatedUIBUtton: UIButton {
     private var buttonDimension: CGFloat {
         return bounds.height / 2
     }
+
     private var checkMarkFrame: CGRect {
-        return CGRect(x: bounds.midX - (bounds.height / 2), y: bounds.midY - (buttonDimension / 2), width: buttonDimension, height: buttonDimension)
+        return CGRect(x: bounds.midX - (buttonDimension / 2), y: bounds.midY - (buttonDimension / 2), width: buttonDimension, height: buttonDimension)
     }
     
     private var createLoaderIcon:  CAShapeLayer {
@@ -45,9 +45,13 @@ class AnimatedUIBUtton: UIButton {
         animation.repeatCount = .infinity
         return animation
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        animationConfig()
+    }
+    
+    public func animationConfig() {
         buttonTitle = title(for: .normal)!
         checkMarkImageView.contentMode = .scaleAspectFit
         checkMarkImageView.frame = checkMarkFrame

@@ -11,8 +11,6 @@ import UIKit
 class ViewController: UIViewController{
     
     @IBOutlet weak var completeButton: UIButton!
-    
-    
     @IBOutlet weak var startOverButton: UIButton!
     @IBAction func startOver(_ sender: Any) {
         startOverButton.isHidden = true
@@ -34,13 +32,6 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        
-        completeButton.layer.cornerRadius = 10
-        completeButton.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
